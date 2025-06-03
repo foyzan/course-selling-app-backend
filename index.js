@@ -1,8 +1,11 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose')
 
+const mongoDBurl = process.env.MONGODB_URL
 
-const { mongoDBurl } = require('./env');
+
 
 
 const { userRouter } = require('./route/user')
