@@ -1,32 +1,17 @@
 const express = require('express');
 
-
-
+const {userRouter} = require('./route/user')
+const {courseRouter} = require('./route/course')
 
 const app = express();
 const port = 3000;
 
+app.use('/user', userRouter)
 
-app.post('/user/signup', function(req, res){
-    return res.json({
-        msg: 'user signup';
-    })
-})
-app.post('/user/signin', function(req, res){
-    return res.json({
-        msg: 'user signin';
-    })
-})
-app.get('/user/purchases', function(req, res){
-    return res.json({
-        msg: 'user signup';
-    })
-})
-app.post('/course', function(req, res){
-    return res.json({
-        msg: 'user signup';
-    })
-})
+app.use('/course', courseRouter)
+
+
+
 
 
 
