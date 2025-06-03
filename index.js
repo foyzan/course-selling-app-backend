@@ -1,8 +1,13 @@
 const express = require('express');
+const mongoose = require('mongoose')
 
-const {userRouter} = require('./route/user')
-const {courseRouter} = require('./route/course')
-const {adminRouter} = require('./route/admin')
+
+const { mongoDBurl } = require('./env');
+
+
+const { userRouter } = require('./route/user')
+const { courseRouter } = require('./route/course')
+const { adminRouter } = require('./route/admin')
 
 const app = express();
 const port = 3000;
@@ -15,9 +20,17 @@ app.use('/admin', adminRouter)
 
 
 
-app.listen(port, function(){
-    console.log('server is running on port ' + port);
-    
-})
 
 
+async function main() {
+
+    await mongoose.connect(mongoDBurl + 'Coursera')
+
+    app.listen(port, function () {
+        console.log('server is running on port ' + port);
+
+    })
+}
+
+
+main()

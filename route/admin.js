@@ -1,5 +1,5 @@
 const {Router} = require('express')
-
+const {adminModel} = require('../db/db')
 const adminRouter = Router();
 
 
