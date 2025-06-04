@@ -20,9 +20,7 @@ userRouter.post('/signup', async function(req, res){
         lastName: z.string().max(60, 'maximum 60 character')
     })
 
-    userModel.create({
-
-    })
+   
     const parsedBody = requireBody.safeParse(req.body)
     if(!parsedBody.success){
         return res.json({
@@ -70,21 +68,21 @@ userRouter.post('/signin', async function(req, res){
 
     const {email, password} = req.body;
 
-    const isFind = await userModel.findOne({
+    const user = await userModel.findOne({
         email
     })
 
-    if(!isFind){
+    if(!user){
         return res.status(401).json({
             msg : 'email not found'
         })
     }
 
-    const isPasswordValid = await bcrypt.compare(password, isFind.password)
+    const isPasswordValid = await bcrypt.compare(password, user.password)
 
     if(isPasswordValid){
        const token = jwt.sign({
-        id: isFind._id
+        id: user._id
        }, JWT_SECRET)
 
        return res.json({
