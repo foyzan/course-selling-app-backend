@@ -1,5 +1,6 @@
-const JWT_SECRET_ADMIN = '12323asSfaSdfDW'
-const JWT_SECRET_USER = '12323asSfaW'
+require('dotenv').config()
+const JWT_SECRET_ADMIN = process.env.JWT_SECRET_ADMIN;
+const JWT_SECRET_USER =  process.env.JWT_SECRET_USER;
 
 
 
