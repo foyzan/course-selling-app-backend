@@ -1,7 +1,7 @@
 const {Router} = require('express');
 
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = '12323asSfaW'
+const {JWT_SECRET_USER} = require('../config')
 const {z} = require('zod');
 const bcrypt = require('bcrypt')
 const userRouter = Router();
@@ -83,7 +83,7 @@ userRouter.post('/signin', async function(req, res){
     if(isPasswordValid){
        const token = jwt.sign({
         id: user._id
-       }, JWT_SECRET)
+       }, JWT_SECRET_USER)
 
        return res.json({
         msg : 'successfully logIn',
